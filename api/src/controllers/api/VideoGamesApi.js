@@ -26,7 +26,7 @@ const API = async (req,res) =>{
             });
             dataAPI = dataAPI.concat(model);
         }
-        res.json(dataAPI);
+        return(dataAPI);
     }catch(error){
         res.send(error)
     }

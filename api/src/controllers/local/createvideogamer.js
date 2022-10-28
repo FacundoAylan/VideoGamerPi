@@ -23,7 +23,7 @@ const createVideogameDB = async (req, res) =>{
             released,
             rating,
             platforms,
-            genres 
+            genres: genreInfo 
         })
 
         newVideogame.addGenres(genreInfo);
