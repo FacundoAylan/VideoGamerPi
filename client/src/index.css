@@ -1,10 +1,26 @@
-body {
+* {
+  padding: 0;
   margin: 0;
+}
+
+body {
+  background-image: url('../src/image/videogames.jpg');
+  min-width: 100%;
+  min-height: 100vh;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  border: 2px solid black;
+}
+
+#root {
+  padding: 0;
+  margin: 0;
 }
 
 code {

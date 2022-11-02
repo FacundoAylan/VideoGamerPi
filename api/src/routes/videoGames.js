@@ -1,12 +1,14 @@
-const { Router } = require('express');
-const { API} = require('../controllers/api/VideoGamesApi');
-const {DBvideogamers} = require('../controllers/local/videoGamers');
-const {createVideogameDB } = require('../controllers/local/createvideogamer');
+const { Router } = require("express");
+const {
+  getVideogames,
+  getVideogamesID,
+} = require("../controllers/routerFilter/routerFilter");
+const { createVideogameDB } = require("../controllers/local/createvideogamer");
 
-const router= Router();
+const router = Router();
 
-router.get('/', DBvideogamers);
-router.post('/', createVideogameDB);
-
+router.get("/", getVideogames);
+router.get("/:id", getVideogamesID);
+router.post("/", createVideogameDB);
 
 module.exports = router;

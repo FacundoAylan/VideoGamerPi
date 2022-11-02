@@ -1,0 +1,22 @@
+.conteinerPagination {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+}
+
+.buttonPagination {
+    border-radius: 20px;
+    height: 25px;
+    min-width: 40px;
+    margin: 3px;
+}
+
+.conteinerPagination button {
+    height: 25px;
+    min-width: 40px;
+    margin: 3px;
+    border-radius: 20px;
+
+}

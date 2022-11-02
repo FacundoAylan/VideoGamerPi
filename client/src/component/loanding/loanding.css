@@ -1,0 +1,78 @@
+.start {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    min-height: 200px;
+    min-width: 300px;
+    margin-top: 15%;
+}
+
+.start h1 {
+    min-height: 100%;
+    margin: 0;
+    padding: 0;
+    margin-left: center;
+    text-align: center;
+    font-family: Titillium Web;
+    font-weight: bold;
+    font-size: 95px;
+    color: rgb(5, 5, 5);
+    text-shadow:
+        0 0 5px rgb(0, 255, 42),
+        0 0 10px rgb(0, 255, 106),
+        0 0 20px rgba(0, 178, 255, 1),
+        0 0 40px rgba(38, 104, 127, 1),
+        0 0 80px rgba(38, 104, 127, 1),
+        0 0 90px rgba(38, 104, 127, 1),
+        0 0 100px rgba(38, 104, 127, 1),
+        0 0 140px rgba(38, 104, 127, 1),
+        0 0 180px rgba(38, 104, 127, 1);
+
+}
+
+.start h1:hover {
+
+    text-shadow:
+        0 0 5px rgb(0, 255, 42),
+        0 0 10px rgb(0, 255, 106),
+        0 0 20px rgb(0, 255, 34),
+        0 0 40px rgb(59, 127, 38),
+        0 0 80px rgba(38, 104, 127, 1),
+        0 0 90px rgba(38, 104, 127, 1),
+        0 0 100px rgba(38, 104, 127, 1),
+        0 0 140px rgba(38, 104, 127, 1),
+        0 0 180px rgb(38, 127, 38);
+}
+
+.linkStart {
+    margin-top: 7%;
+}
+
+.buttonStart {
+    min-width: 300px;
+    min-height: 60px;
+    font-family: Titillium Web;
+    font-weight: bold;
+    font-size: 22px;
+    border-radius: 12px;
+    color: rgb(17, 17, 17);
+    background-color: rgba(0, 174, 255, 0.514);
+    font-size: 45px;
+}
+
+.buttonStart:hover {
+    background-color: rgba(0, 255, 0, 0.678);
+    box-shadow:
+        0 0 5px rgb(0, 255, 42),
+        0 0 10px rgb(0, 255, 106),
+        0 0 20px rgb(0, 255, 34),
+        0 0 40px rgb(59, 127, 38),
+        0 0 80px rgba(38, 104, 127, 1),
+        0 0 90px rgba(38, 104, 127, 1),
+        0 0 100px rgba(38, 104, 127, 1),
+        0 0 140px rgba(38, 104, 127, 1),
+        0 0 180px rgb(38, 127, 38);
+    font-size: 40px;
+    cursor: pointer;
+}
