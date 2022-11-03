@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getVideogames } from "../../redux/action/index";
+import { Search } from "../search/search";
 import { VideoGamer } from "./videogamer/videogamer";
 import { Pagination } from "./pagination/pagination";
 import "./homePage.css";
@@ -23,9 +24,14 @@ export const HomePage = () => {
 
   return (
     <div>
-      <div className="header"></div>
       {videoGames?.length > 0 ? (
         <div className="mainConteiner">
+          <div className="header">
+            <h1>gamer</h1>
+            <div className="searcHeader">
+              <Search />
+            </div>
+          </div>
           <div className="conteinerVideogamers">
             {videoGames.slice(previusPage, nextPage).map((value) => {
               return (
@@ -53,12 +59,19 @@ export const HomePage = () => {
           </div>
         </div>
       ) : (
-        <div>
-          <img
-            src="https://img1.picmix.com/output/stamp/normal/8/5/2/9/509258_fb107.gif"
-            alt="Img not found"
-            width="150px"
-          />
+        <div className="loader">
+          <div className="circles">
+            <span className="one"></span>
+            <span className="two"></span>
+            <span className="three"></span>
+          </div>
+          <div className="pacman">
+            <span className="top"></span>
+            <span className="bottom"></span>
+            <span className="left"></span>
+            <div className="eye"></div>
+          </div>
+          <h1 className="loaderH1">loading...</h1>
         </div>
       )}
     </div>

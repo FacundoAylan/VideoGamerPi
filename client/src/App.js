@@ -1,6 +1,6 @@
 import "./App.css";
 import { Route } from "react-router-dom";
-import { Start } from "../src/component/loanding/loanding";
+import { Start } from "../src/component/loading/loading";
 import { HomePage } from "../src/component/homePage/homePage";
 
 function App() {
