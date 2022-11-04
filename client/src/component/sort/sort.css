@@ -1,0 +1,40 @@
+.conteinerSort {
+    position: relative;
+    padding: 0;
+    margin: 0;
+}
+.inputSort {
+    opacity: 0;
+}
+.labelSort {
+    position: absolute;
+    z-index: 110;
+    margin-top: 9px;
+    font-size: 35px;
+    margin-left: 86%;
+}
+
+.option {
+    padding: 0;
+    margin: 0;
+    margin-left: 32%;
+    position: absolute;
+    z-index: 100;
+    height: 300px;
+    width: 300px;
+    border: 1px solid black;
+    background: #234567;
+    opacity: 0;
+}
+
+  
+
+
+.menu li {
+    display: block;
+    background: lightgrey;
+    margin: 0;
+    padding: 10px;
+    list-style: none;
+    border-bottom: 1px solid grey;
+  } 

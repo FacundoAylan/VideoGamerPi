@@ -20,3 +20,15 @@
     border-radius: 20px;
 
 }
+
+.active {
+    background-color: green;
+}
+
+.disabledPrevius {
+    opacity: 0;
+}
+
+.disabledNext {
+    opacity: 0;
+}
