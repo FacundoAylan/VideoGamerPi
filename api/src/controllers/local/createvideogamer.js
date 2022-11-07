@@ -34,7 +34,7 @@ const createVideogameDB = async (req, res) => {
     result.length === 0
   ) {
     const newVideogame = await Videogame.create({
-      name,
+      name: name.toLowerCase(),
       description,
       image,
       released,

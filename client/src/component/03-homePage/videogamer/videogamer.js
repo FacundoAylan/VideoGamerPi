@@ -8,11 +8,18 @@ export const VideoGamer = ({ name, image, genre }) => {
       <div className="capaVideogamer">
         <h1>{name}</h1>
         {genre.map((value) => {
+          if(typeof(value)!== 'object'){
+            return (
+              <div>
+                <h2>{value}</h2>
+              </div>
+            );
+          }
           return (
             <div>
-              <h2>{value}</h2>
+              <h2>{value.name}</h2>
             </div>
-          );
+          )
         })}
       </div>
     </div>

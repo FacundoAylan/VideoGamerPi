@@ -1,6 +1,6 @@
 const { Videogame, Genre } = require("../../db");
 const { API } = require("../api/VideoGamesApi");
-
+//const { API } = require("./data");
 const DBvideogamers = async (req, res) => {
   const dataDBAPI = await API();
   const videogamesDB = await Videogame.findAll({
@@ -14,9 +14,10 @@ const DBvideogamers = async (req, res) => {
   });
 
   const dataResult = dataDBAPI.concat(videogamesDB);
-
   return dataResult;
+
 };
+
 
 module.exports = {
   DBvideogamers,

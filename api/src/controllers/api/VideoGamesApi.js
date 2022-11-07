@@ -12,7 +12,7 @@ const API = async (req, res) => {
       const model = gameAPI.data.results.map((value) => {
         return {
           id: value.id,
-          name: value.name,
+          name: value.name.toLowerCase(),
           description: value.description,
           image: value.background_image,
           released: value.released,

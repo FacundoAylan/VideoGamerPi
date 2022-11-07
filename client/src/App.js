@@ -1,8 +1,8 @@
 import "./App.css";
 import { Route } from "react-router-dom";
-import { Start } from "../src/component/loading/loading";
-import { HomePage } from "../src/component/homePage/homePage";
-import { VideogamerID} from "../src/component/homePage/videogamerID/videogamerID"
+import { Start } from "../src/component/01-loading/loading";
+import { HomePage } from "./component/03-homePage/homePage";
+import { VideogamerID} from "./component/03-homePage/videogamerID/videogamerID"
 
 function App() {
   return (

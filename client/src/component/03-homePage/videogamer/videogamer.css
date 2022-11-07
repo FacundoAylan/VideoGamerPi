@@ -28,6 +28,12 @@
     border-radius: 12px;
     font-size: 60%;
     background-color: rgba(0, 255, 255, 0.274);
+    color: black;
     border: 1px solid red;
     opacity: 1;
 }
+
+/* .conteinerVideogamer:hover > .capaVideogamer {
+    opacity: 1;
+    visibility: visible;
+} */

@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {Link} from 'react-router-dom';
 import { getVideogames } from "../../redux/action/index";
-import { Search } from "../search/search";
+import { Search } from "../02-header/search/search";
 import { VideoGamer } from "./videogamer/videogamer";
 import { Pagination } from "./pagination/pagination";
-import { Sort } from "../sort/sort";
+import { Sort } from "../02-header/sort/sort";
 import "./homePage.css";
 
 export const HomePage = () => {
@@ -22,7 +22,7 @@ export const HomePage = () => {
   useEffect(() => {
     dispatch(getVideogames());
   }, [dispatch]);
-
+  console.log(videoGames)
   return (
     <div>
       {videoGames?.length > 0 ? (
@@ -56,7 +56,6 @@ export const HomePage = () => {
                       <VideoGamer
                         name={value.name}
                         image={value.image}
-                        alt=""
                         genre={value.genres}
                       />
                     </Link>
