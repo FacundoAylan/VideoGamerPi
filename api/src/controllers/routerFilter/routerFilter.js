@@ -32,7 +32,7 @@ const getVideogamesID = async (req, res) => {
     dataId = dataId.filter((value) => value.id == id);
 
     if (dataId.length !== 0) {
-      res.send(dataId);
+      res.send(dataId[0]);
     } else {
       res.send("id not found");
     }

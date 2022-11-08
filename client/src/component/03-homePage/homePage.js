@@ -10,8 +10,7 @@ import "./homePage.css";
 
 export const HomePage = () => {
   //variable que contiene todos los videojuegos
-  const videoGames = useSelector((state) => state.videogames);
-  //const videoGames = [1];
+  const videoGames = useSelector((state) => state.videogames,() => false);
   //varibles para controlar el paginado
   const [page, setPage] = useState(1);
   //varibles para calcular la cantidad de paginas
@@ -21,7 +20,7 @@ export const HomePage = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getVideogames());
-  }, [dispatch]);
+  }, []);
   console.log(videoGames)
   return (
     <div>

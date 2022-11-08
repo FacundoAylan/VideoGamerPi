@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { filterCreate, filter_rating, getGenres, videogamersALL } from "../../../redux/action/index";
+import { getVideogames, filterCreate, filter_rating, getGenres, filterGenre, videogamersALL } from "../../../redux/action/index";
 import "./sort.css";
 
 export const Sort = () => {
@@ -9,7 +9,7 @@ export const Sort = () => {
   const dispatch = useDispatch();
   useEffect(()=>{
     dispatch(getGenres())
-  },[dispatch]);
+  },[]);
 
   const create = (e) => {
     dispatch(filterCreate(e.target.value));
@@ -18,8 +18,8 @@ export const Sort = () => {
   const Rating = (e) =>{
     dispatch(filter_rating(e.target.value));
   };
-  const genre = () =>{
-    console.log("")
+  const genre = (e) =>{
+    dispatch(filterGenre(e.target.value));
   }
   const filterALL = (e) => {
     dispatch(videogamersALL(e.target.value));

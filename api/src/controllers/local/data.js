@@ -1814,25 +1814,6 @@ const API = async (req, res)=>{
             "Adventure"
         ]
         },
-        {
-        "id": "9a1990d2-d46e-4526-b733-acbf42332862",
-        "name": "prueba",
-        "description": "juego",
-        "image": "https://media.rawg.io/media/games/f87/f87457e8347484033cb34cde6101d08d.jpg",
-        "released": "2013-08-13",
-        "rating": 23,
-        "platforms": "pc",
-        "createdAt": "2022-11-05T20:09:15.489Z",
-        "updatedAt": "2022-11-05T20:09:15.489Z",
-        "genres": [
-            {
-            "name": "Indie"
-            },
-            {
-            "name": "Strategy"
-            }
-        ]
-        }
     ]
     return data
 }catch(error){

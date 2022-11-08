@@ -5,7 +5,8 @@ import {
   FILTER_CREATE,
   FILTER_RATING,
   GET_GENRES,
-  VIDEOGAMERS_ALL
+  VIDEOGAMERS_ALL,
+  FILTER_GENRE
 } from "../action";
 
 const inicialState = {
@@ -55,9 +56,8 @@ export const rootReducer = (state = inicialState, action) => {
       };
     }
     case FILTER_RATING : {
-      const videogamers = state.allVideogamers;
-      let orderRatingGenre = action.payload == "true"? 
-        videogamers.sort((a,b) =>{
+      let orderRatingGenre = action.payload === "true"? 
+      state.videogames.sort((a,b) =>{
           if (a.rating < b.rating) {
             return -1;
         }
@@ -66,7 +66,7 @@ export const rootReducer = (state = inicialState, action) => {
         }
         return 0;
         }): 
-        videogamers.sort((a, b) => {
+        state.videogames.sort((a, b) => {
           if (a.rating < b.rating) {
               return 1;
           }
@@ -75,9 +75,9 @@ export const rootReducer = (state = inicialState, action) => {
           }
           return 0;
       })
-        return {
-          ...state,
-          videogames: orderRatingGenre
+      return {
+        ...state,
+        videogames: orderRatingGenre
       }
     }
     case GET_GENRES: {
@@ -86,17 +86,23 @@ export const rootReducer = (state = inicialState, action) => {
         genres: action.payload
       }
     }
+    case FILTER_GENRE: {
+      const filterGenre = state.videogames.filter((value) => value.genres.includes(action.payload))
+      if(filterGenre.length >0){
+        return{
+          ...state,
+          videogames: filterGenre
+        }
+      }
+    }
     case VIDEOGAMERS_ALL: {
-      const allVideogamers = state.allVideogamers;
-      let orderVideogamesByName =
-        action.payload === "true"?
-          allVideogamers.sort((a, b) => {
+      let orderVideogamesByName =action.payload === "true"? state.videogames.sort((a, b) => {
               return a.name.localeCompare(b.name);
             })
-          : allVideogamers.sort((a, b) => {
+          : state.videogames.sort((a, b) => {
               return b.name.localeCompare(a.name);
             });
-
+            console.log(orderVideogamesByName)
       return {
         ...state,
         videogames: orderVideogamesByName,

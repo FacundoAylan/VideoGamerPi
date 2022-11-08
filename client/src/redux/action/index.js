@@ -6,7 +6,8 @@ export const GET_VIDEOGAMES_NAME = "GET_VIDEOGAMES_NAME";
 export const FILTER_CREATE = "FILTER_CREATE";
 export const VIDEOGAMERS_ALL = "VIDEOGAMERS_ALL";
 export const FILTER_RATING = "FILTER_RATING";
-export const GET_GENRES = "GET_GENRES"
+export const GET_GENRES = "GET_GENRES";
+export const FILTER_GENRE = "FILTER_GENRE";
 
 export const getVideogames = () => {
   return async (dispatch) => {
@@ -86,6 +87,19 @@ export const getGenres = () => {
       });
     } catch (error) {
       console.log(error);
+    }
+  }
+}
+
+export const filterGenre = ( genre) => {
+  return async(dispatch) => {
+    try {
+      dispatch({
+        type: FILTER_GENRE,
+        payload:genre
+      })
+    }catch(error){
+      console.log(error)
     }
   }
 }

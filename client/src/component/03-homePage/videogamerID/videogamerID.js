@@ -13,29 +13,26 @@ export const VideogamerID = () => {
   useEffect(() => {
     dispatch(detailVideogames(id));
   }, [dispatch]);
-  console.log(detail);
   return (
     <div>
-      {detail?.length > 0 ? (
-        detail.map((value) => {
-          return (
+      {detail !== undefined ? (
             <div className="conteinerVideogamerID">
-              <img src={value.image} alt="" className="imageVideogamerID" />
+              <img src={detail.image} alt="" className="imageVideogamerID" />
               <div className="detailVideogamerID">
-                <h1>Name: {value.name}</h1>
-                <h2>Id: {value.id}</h2>
-                <h2>Rating: {value.rating}</h2>
-                <h2>Released: {value.released}</h2>
+                <h1>Name: {detail.name}</h1>
+                <h2>Id: {detail.id}</h2>
+                <h2>Rating: {detail.rating}</h2>
+                <h2>Released: {detail.released}</h2>
                 <div className="dataVideogamerID">
                   <div>
                     <h2>Genres:</h2>
-                    {value.genres.map((genres) => {
+                    {detail.genres.map((genres) => {
                       return  (<h2>{genres}</h2>);
                     })}
                   </div>
                   <div>
                     <h2>Platforms:</h2>
-                    {value.platforms.map((platforms) => {
+                    {detail.platforms.map((platforms) => {
                       return  (<h2>{platforms}</h2>);
                     })}
                   </div>
@@ -43,8 +40,6 @@ export const VideogamerID = () => {
 
               </div>
             </div>
-          );
-        })
       ) : (
         <div className="conteinerMario">
           <svg className="circlevideogamer">
