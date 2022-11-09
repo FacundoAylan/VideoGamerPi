@@ -6,6 +6,8 @@
     justify-self: center;
     position: relative;
     overflow: hidden;
+    border: 2px solid green;
+    border-radius: 12px;
 }
 
 .imageVideogamer {
@@ -29,11 +31,10 @@
     font-size: 60%;
     background-color: rgba(0, 255, 255, 0.274);
     color: black;
-    border: 1px solid red;
-    opacity: 1;
+    opacity: 0;
 }
 
-/* .conteinerVideogamer:hover > .capaVideogamer {
+.conteinerVideogamer:hover > .capaVideogamer {
     opacity: 1;
     visibility: visible;
-} */
+}

@@ -1,7 +1,7 @@
 /* css de detail */
 .conteinerVideogamerID {
     margin-left: 2.5%;
-    margin-top: 8%;
+    margin-top: 4%;
     width: 95%;
     height: auto;
     display: grid;
@@ -9,6 +9,20 @@
     border: 1px solid black;
     border-radius: 15px;
     background-color: rgba(7, 116, 167, 0.788);
+}
+.black{
+    border-radius: 20px;
+    margin-left: 13px;
+}
+.black button{
+    background-color: rgb(43, 43, 202);
+    margin-top: 5px;
+    height: 55px;
+    width: 55px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 25px;
+    color: white;
 }
 
 .imageVideogamerID {

@@ -1,0 +1,71 @@
+.conteinterCreate {
+    height: 100vh;
+    width: 100%;
+}
+
+.conteinerForm{
+    margin-top: 3%;
+    margin-left: 2%;
+    width: 95%;
+    background-color: rgba(0, 174, 255, 0.836);
+    border-radius: 8px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 80px 80px 80px 130px 55px;
+    grid-gap: 10px;
+}
+
+.name {
+    display: flex;
+    flex-direction: column;
+}
+.name label{
+    margin-left: 50%;
+}
+
+.name input{
+    width: 95%;
+    height: 30px;
+    margin: 1%;
+    border-radius: 8px;
+}
+
+.genres {
+    display: flex;
+    flex-direction: column;
+}
+.genres label{
+    margin-left: 50%;
+}
+
+.genres select{
+    width: 95%;
+    height: 35px;
+    margin: 1%;
+    border-radius: 8px;
+}
+
+.description {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 4;
+    grid-row-end: 4;
+    margin-left: 60%;
+}
+
+.description label {
+    margin-left: 40%;
+}
+.description input{
+    width: 500px;
+    height: 100px;
+}
+
+.buttonCreate {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 5;
+    grid-row-end: 5;
+    margin-left: 95%;
+    height: 93%;
+}

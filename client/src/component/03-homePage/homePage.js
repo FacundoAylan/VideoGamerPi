@@ -28,7 +28,9 @@ export const HomePage = () => {
         <div className="mainConteiner">
           <div className="header">
             <div className="headerTitle">
-              <h1 className="headerH1">VIDEOGAMES</h1>
+              <Link to ="/">
+                <h1 className="headerH1">VIDEOGAMES</h1>
+              </Link>
               <img
                 src="https://media.tenor.com/e8aElio9JQAAAAAj/mario-walking.gif"
                 alt=""

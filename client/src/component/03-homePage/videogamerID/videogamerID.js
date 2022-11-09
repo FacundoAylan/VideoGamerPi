@@ -14,7 +14,12 @@ export const VideogamerID = () => {
     dispatch(detailVideogames(id));
   }, [dispatch]);
   return (
-    <div>
+    <div className="conteinerID">
+      <a className="black" href="javascript:history.back()">
+        <button>
+          {"<="}
+        </button> 
+      </a>
       {detail !== undefined ? (
             <div className="conteinerVideogamerID">
               <img src={detail.image} alt="" className="imageVideogamerID" />

@@ -11,12 +11,17 @@
 .headerTitle {
     display: flex;
     position: relative;
+    
+}
+.headerTitle :link {
+    text-decoration: none;
 }
 .header h1 {
     margin: 0.2rem;
     margin-top: 0.6rem;
     padding: 0;
     font-size: 40px;
+    color: black;
     text-shadow:
     0 0 5px rgb(0, 255, 42),
     0 0 10px rgb(0, 255, 106),
