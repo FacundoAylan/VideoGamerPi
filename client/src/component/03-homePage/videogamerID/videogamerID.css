@@ -1,7 +1,8 @@
 /* css de detail */
 .conteinerVideogamerID {
+    position: relative;
     margin-left: 2.5%;
-    margin-top: 4%;
+    margin-top: 6%;
     width: 95%;
     height: auto;
     display: grid;
@@ -11,8 +12,10 @@
     background-color: rgba(7, 116, 167, 0.788);
 }
 .black{
+    position: absolute;
     border-radius: 20px;
     margin-left: 13px;
+    margin-top: -6%;
 }
 .black button{
     background-color: rgb(43, 43, 202);
@@ -33,6 +36,60 @@
 
 .detailVideogamerID h1 {
     margin-left: 28%;
+}
+.activeButton{
+    margin-left: 15px;
+    height: 35px;
+    width: 65px;
+    border-radius: 8px;
+    background-color: white;
+    border: 2px solid black;
+    cursor: pointer;
+}
+
+.disabledButton{
+    opacity: 0;
+}
+
+.activeID {
+    position: absolute;
+    left: -39px;
+    top: 1px;
+    background-color: rgb(58, 58, 216);
+    height: 475px;
+    width: 98%;
+    border-radius: 15px;
+    z-index: 100;
+    opacity: 1;
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+}
+
+.activeID button {
+    position: absolute;
+    height: 40px;
+    width: 40px;
+    margin-left: 94%;
+    border-radius: 20px;
+    color: red;
+    font-size: 20px;
+    font-weight: 800;
+    background-color: white;
+    border: none;
+    cursor: pointer;
+}
+.disabledID{
+    position: absolute;
+    z-index: 30;
+    opacity: 0;
+}
+
+.activeID div{
+    width: 85%;
+    margin-top: 50px;
+    color: black;
+    left: -7%;
 }
 
 .detailVideogamerID h2 {

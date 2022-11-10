@@ -13,7 +13,6 @@ const API = async (req, res) => {
         return {
           id: value.id,
           name: value.name.toLowerCase(),
-          description: value.description,
           image: value.background_image,
           released: value.released,
           rating: value.rating,

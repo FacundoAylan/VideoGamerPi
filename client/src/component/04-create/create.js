@@ -1,33 +1,59 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getGenres } from "../../redux/action/index";
+import { getGenres, create } from "../../redux/action/index";
+import { PlatformsApi } from "./platformsApi";
 import "./create.css";
 
 export const Create = () => {
   const genres = useSelector((state) => state.genres);
-  const platformsApi = [
-    "PC",
-    "PlayStation 5",
-    "PlayStation 4",
-    "PlayStation 3",
-    "Xbox One",
-    "Xbox Series S/X",
-    "Xbox 360",
-    "Xbox",
-    "Nintendo Switch",
-    "Nintendo 3DS",
-    "Nintendo DS",
-    "Nintendo DSi",
-    "iOS",
-    "Android",
-    "macOS",
-    "Linux",
-  ];
+  const platformsApi = PlatformsApi();
+
+  const [state, setState] = useState({
+      "name": "",
+      "description": "",
+      "image": "",
+      "released": "",
+      "rating": "",
+      "platforms": [],
+      "genres":[] 
+})
 
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getGenres());
   }, []);
+
+  const input = (e) =>{
+    if(e.target.id === "rating"){
+      setState({
+        ...state,
+        [e.target.id]: Number(e.target.value)
+      }) 
+    }else{
+      setState({
+        ...state,
+        [e.target.id]: e.target.value
+      })
+    }
+  };
+  const inputSelect = (e) =>{
+    if(e.target.id === "genres"){
+      setState({
+        ...state,
+        genres: state.genres.concat(e.target.value)
+      })
+    }else{
+      setState({
+        ...state,
+        platforms: state.platforms.concat(e.target.value)
+      })
+    }
+  };
+  const handlerOnSubmit = (event) => {
+    event.preventDefault()
+    dispatch(create(state))
+  }
+  console.log(state)
   return (
     <div className="conteinterCreate">
       <a className="blackCreate" href="javascript:history.back()">
@@ -35,26 +61,42 @@ export const Create = () => {
           {"<="}
         </button> 
       </a>
-      <form className="conteinerForm">
+      <form className="conteinerForm" onSubmit={handlerOnSubmit} >
         <div className="name">
           <label>Name:</label>
-          <input />
+          <input 
+            placeholder="Name"
+            id="name"
+           value={state.name}
+           onChange={input}
+          />
         </div>
 
         <div className="name">
           <label>released: </label>
-          <input type="date" />
+          <input 
+          placeholder="mm/dd/yyyy"
+          type="date" 
+          id="released"
+          value={state.released}
+          onChange={input}
+          />
         </div>
 
         <div className="name">
           <label>Rating:</label>
-          <input />
+          <input
+            placeholder="Rating"
+            id="rating"
+            value={state.rating}
+            onChange={input}  
+          />
         </div>
 
         <div className="genres">
           <label>Genres: </label>
-          <select>
-            <option value="true">Genres</option>
+          <select id="genres" onChange={inputSelect}>
+            <option value={null}>Genres</option>
             {genres?.map((value) => {
               return <option value={value.name}>{value.name}</option>;
             })}
@@ -63,7 +105,7 @@ export const Create = () => {
 
         <div className="genres">
           <label>Plataform: </label>
-          <select>
+          <select id="plataform" onChange={inputSelect}>
             <option value="true">Plataform</option>
             {platformsApi.map((value) => {
               return <option value={value}>{value}</option>;
@@ -71,10 +113,23 @@ export const Create = () => {
           </select>
 
         </div>
+        <div className="name">
+          <label>Image:</label>
+          <input 
+            placeholder="Image"
+            id="image"
+           value={state.image}
+           onChange={input}
+          />
+        </div>
 
         <div className="description">
           <label>Description: </label>
-          <input type="text" />
+          <textarea
+          id="description"
+          value={state.description}
+          onChange={input}
+          />
         </div>
 
         <button className="buttonCreate">Create videogamer</button>

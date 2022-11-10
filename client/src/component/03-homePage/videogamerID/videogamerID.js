@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { detailVideogames } from "../../../redux/action/index";
@@ -13,38 +13,60 @@ export const VideogamerID = () => {
   useEffect(() => {
     dispatch(detailVideogames(id));
   }, [dispatch]);
+
+  const [description, setDescription] = useState(false);
+  const activeDescription = () => {
+    if (description === false) {
+      setDescription(true);
+    } else {
+      setDescription(false);
+    }
+  };
   return (
     <div className="conteinerID">
       <a className="black" href="javascript:history.back()">
-        <button>
-          {"<="}
-        </button> 
+        <button>{"<="}</button>
       </a>
       {detail !== undefined ? (
-            <div className="conteinerVideogamerID">
-              <img src={detail.image} alt="" className="imageVideogamerID" />
-              <div className="detailVideogamerID">
-                <h1>Name: {detail.name}</h1>
-                <h2>Id: {detail.id}</h2>
-                <h2>Rating: {detail.rating}</h2>
-                <h2>Released: {detail.released}</h2>
-                <div className="dataVideogamerID">
-                  <div>
-                    <h2>Genres:</h2>
-                    {detail.genres.map((genres) => {
-                      return  (<h2>{genres}</h2>);
-                    })}
-                  </div>
-                  <div>
-                    <h2>Platforms:</h2>
-                    {detail.platforms.map((platforms) => {
-                      return  (<h2>{platforms}</h2>);
-                    })}
-                  </div>
-                </div>
+        <div className="conteinerVideogamerID">
+          <img src={detail.image} alt="" className="imageVideogamerID" />
+          <div className="detailVideogamerID">
+            <h1>Name: {detail.name}</h1>
+            <h2>ID: {detail.id}</h2>
+            <h2>
+              description:
+              <button
+                className={
+                  description === true ? "disabledButton" : "activeButton"
+                }
+                onClick={activeDescription}
+              >
+                Visualize
+              </button>
+            </h2>
+            <h2 className={description === false ? "disabledID" : "activeID"}>
+              <button onClick={activeDescription}>X</button>
+              <div>{detail.description}</div>
+            </h2>
 
+            <h2>Rating: {detail.rating}</h2>
+            <h2>Released: {detail.released}</h2>
+            <div className="dataVideogamerID">
+              <div>
+                <h2>Genres:</h2>
+                {detail.genres.map((genres) => {
+                  return <h2>{genres}</h2>;
+                })}
+              </div>
+              <div>
+                <h2>Platforms:</h2>
+                {detail.platforms.map((platforms) => {
+                  return <h2>{platforms}</h2>;
+                })}
               </div>
             </div>
+          </div>
+        </div>
       ) : (
         <div className="conteinerMario">
           <svg className="circlevideogamer">

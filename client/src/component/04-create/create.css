@@ -56,7 +56,7 @@
 .description label {
     margin-left: 40%;
 }
-.description input{
+.description textarea{
     width: 500px;
     height: 100px;
 }

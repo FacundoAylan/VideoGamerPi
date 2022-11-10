@@ -6,7 +6,8 @@ import {
   FILTER_RATING,
   GET_GENRES,
   VIDEOGAMERS_ALL,
-  FILTER_GENRE
+  FILTER_GENRE,
+  CREATE_VIDEOGAME
 } from "../action";
 
 const inicialState = {
