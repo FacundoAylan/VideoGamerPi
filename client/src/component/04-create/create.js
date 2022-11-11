@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getGenres, create } from "../../redux/action/index";
 import { PlatformsApi } from "./platformsApi";
+import { Link } from "react-router-dom";
+import { Verificacion } from "./verificacion";
 import "./create.css";
 
 export const Create = () => {
@@ -16,7 +18,14 @@ export const Create = () => {
       "rating": "",
       "platforms": [],
       "genres":[] 
-})
+});
+
+  const expresiones = {
+    name: /^[\s\S]{2,10}$/,
+    rating: /^[0-9]+([,][0-9]+)?$/,
+    image: /(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)/,
+    description: /^[\s\S]{10,25}$/
+  };
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -27,8 +36,8 @@ export const Create = () => {
     if(e.target.id === "rating"){
       setState({
         ...state,
-        [e.target.id]: Number(e.target.value)
-      }) 
+        [e.target.id]:  Number(e.target.value) ?  Number(e.target.value) : e.target.value
+      })
     }else{
       setState({
         ...state,
@@ -53,14 +62,14 @@ export const Create = () => {
     event.preventDefault()
     dispatch(create(state))
   }
-  console.log(state)
+
+  let verificaion = Verificacion(state,expresiones);
+
   return (
     <div className="conteinterCreate">
-      <a className="blackCreate" href="javascript:history.back()">
-        <button>
-          {"<="}
-        </button> 
-      </a>
+      <Link to="/videogames"  className="backCreate">
+        <button>{"<="}</button>
+      </Link>
       <form className="conteinerForm" onSubmit={handlerOnSubmit} >
         <div className="name">
           <label>Name:</label>
@@ -70,6 +79,7 @@ export const Create = () => {
            value={state.name}
            onChange={input}
           />
+          <label className={!expresiones.name.test(state.name)? "label": "disabledCreate"}>2 to 10 characters</label>
         </div>
 
         <div className="name">
@@ -80,16 +90,6 @@ export const Create = () => {
           id="released"
           value={state.released}
           onChange={input}
-          />
-        </div>
-
-        <div className="name">
-          <label>Rating:</label>
-          <input
-            placeholder="Rating"
-            id="rating"
-            value={state.rating}
-            onChange={input}  
           />
         </div>
 
@@ -111,8 +111,20 @@ export const Create = () => {
               return <option value={value}>{value}</option>;
             })}
           </select>
-
+        
         </div>
+        
+        <div className="name">
+          <label>Rating:</label>
+          <input
+            placeholder="Rating"
+            id="rating"
+            value={state.rating}
+            onChange={input}  
+          />
+          <label className={!expresiones.rating.test(state.rating)? "label": "disabledCreate"}>example (2 or 2,5)</label>
+        </div>  
+
         <div className="name">
           <label>Image:</label>
           <input 
@@ -121,6 +133,7 @@ export const Create = () => {
            value={state.image}
            onChange={input}
           />
+          <label className={!expresiones.image.test(state.image)? "label": "disabledCreate"}>url (jpg o png)</label>
         </div>
 
         <div className="description">
@@ -130,9 +143,10 @@ export const Create = () => {
           value={state.description}
           onChange={input}
           />
+          <label className={!expresiones.description.test(state.description)? "label": "disabledCreate"}>10 to 25 characters</label>
         </div>
 
-        <button className="buttonCreate">Create videogamer</button>
+        <button className={verificaion?"buttonCreate": "disabledButtonCreate"}>Create videogamer</button>
       </form>
     </div>
   );

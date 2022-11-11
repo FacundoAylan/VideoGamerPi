@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { detailVideogames } from "../../../redux/action/index";
+import { Link } from "react-router-dom";
 import "./videogamerID.css";
 
 export const VideogamerID = () => {
@@ -24,9 +25,9 @@ export const VideogamerID = () => {
   };
   return (
     <div className="conteinerID">
-      <a className="black" href="javascript:history.back()">
+      <Link to="/videogames" className="black">
         <button>{"<="}</button>
-      </a>
+      </Link>
       {detail !== undefined ? (
         <div className="conteinerVideogamerID">
           <img src={detail.image} alt="" className="imageVideogamerID" />
