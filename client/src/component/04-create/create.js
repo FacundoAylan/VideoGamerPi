@@ -11,20 +11,20 @@ export const Create = () => {
   const platformsApi = PlatformsApi();
 
   const [state, setState] = useState({
-      "name": "",
-      "description": "",
-      "image": "",
-      "released": "",
-      "rating": "",
-      "platforms": [],
-      "genres":[] 
-});
+    name: "",
+    description: "",
+    image: "",
+    released: "",
+    rating: "",
+    platforms: [],
+    genres: [],
+  });
 
   const expresiones = {
     name: /^[\s\S]{2,10}$/,
     rating: /^[0-9]+([,][0-9]+)?$/,
     image: /(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)/,
-    description: /^[\s\S]{10,25}$/
+    description: /^[\s\S]{10,100}$/,
   };
 
   const dispatch = useDispatch();
@@ -32,64 +32,90 @@ export const Create = () => {
     dispatch(getGenres());
   }, []);
 
-  const input = (e) =>{
-    if(e.target.id === "rating"){
+  const input = (e) => {
+    if (e.target.id === "rating") {
       setState({
         ...state,
-        [e.target.id]:  Number(e.target.value) ?  Number(e.target.value) : e.target.value
-      })
-    }else{
+        [e.target.id]: Number(e.target.value)
+          ? Number(e.target.value)
+          : e.target.value,
+      });
+    } else {
       setState({
         ...state,
-        [e.target.id]: e.target.value
-      })
+        [e.target.id]: e.target.value,
+      });
     }
   };
-  const inputSelect = (e) =>{
-    if(e.target.id === "genres"){
+  const inputSelect = (e) => {
+    if (e.target.id === "genres") {
       setState({
         ...state,
-        genres: state.genres.concat(e.target.value)
-      })
-    }else{
+        genres: state.genres.concat(e.target.value),
+      });
+    } else {
       setState({
         ...state,
-        platforms: state.platforms.concat(e.target.value)
-      })
+        platforms: state.platforms.concat(e.target.value),
+      });
+    }
+  };
+
+  const onChangeDelete = (e) => {
+    const filter =
+      e.id === "platforms"
+        ? state.platforms.filter((value) => value !== e.target.value)
+        : state.genres.filter((value) => value !== e.target.value);
+    if (filter.length === 0) {
+      setState({
+        ...state,
+        [e.target.id]: [],
+      });
+    } else {
+      setState({
+        ...state,
+        [e.target.id]: filter,
+      });
     }
   };
   const handlerOnSubmit = (event) => {
-    event.preventDefault()
-    dispatch(create(state))
-  }
+    event.preventDefault();
+    dispatch(create(state));
+  };
 
-  let verificaion = Verificacion(state,expresiones);
+  let verificaion = Verificacion(state, expresiones);
 
   return (
     <div className="conteinterCreate">
-      <Link to="/videogames"  className="backCreate">
+      <Link to="/videogames" className="backCreate">
         <button>{"<="}</button>
       </Link>
-      <form className="conteinerForm" onSubmit={handlerOnSubmit} >
+      <form className="conteinerForm" onSubmit={handlerOnSubmit}>
         <div className="name">
           <label>Name:</label>
-          <input 
+          <input
             placeholder="Name"
             id="name"
-           value={state.name}
-           onChange={input}
+            value={state.name}
+            onChange={input}
           />
-          <label className={!expresiones.name.test(state.name)? "label": "disabledCreate"}>2 to 10 characters</label>
+          <label
+            className={
+              !expresiones.name.test(state.name) ? "label" : "disabledCreate"
+            }
+          >
+            2 to 10 characters
+          </label>
         </div>
 
         <div className="name">
           <label>released: </label>
-          <input 
-          placeholder="mm/dd/yyyy"
-          type="date" 
-          id="released"
-          value={state.released}
-          onChange={input}
+          <input
+            placeholder="mm/dd/yyyy"
+            type="date"
+            id="released"
+            value={state.released}
+            onChange={input}
           />
         </div>
 
@@ -101,52 +127,97 @@ export const Create = () => {
               return <option value={value.name}>{value.name}</option>;
             })}
           </select>
+          <div className="delete1">
+            {state.genres.map((value) => (
+              <button value={value} id="genres" onClick={onChangeDelete}>
+                {value}
+              </button>
+            ))}
+          </div>
         </div>
 
         <div className="genres">
-          <label>Plataform: </label>
-          <select id="plataform" onChange={inputSelect}>
-            <option value="true">Plataform</option>
+          <label>Platform: </label>
+          <select id="platform" onChange={inputSelect}>
+            <option value="true">Platforms</option>
             {platformsApi.map((value) => {
               return <option value={value}>{value}</option>;
             })}
           </select>
-        
+          <div className="delete2">
+            {state.platforms.length > 0
+              ? state.platforms.map((value) => (
+                  <button
+                    value={value}
+                    id="platforms"
+                    onClick={onChangeDelete}
+                  >
+                    {value}
+                  </button>
+                ))
+              : ""}
+          </div>
         </div>
-        
+
         <div className="name">
           <label>Rating:</label>
           <input
             placeholder="Rating"
             id="rating"
             value={state.rating}
-            onChange={input}  
+            onChange={input}
           />
-          <label className={!expresiones.rating.test(state.rating)? "label": "disabledCreate"}>example (2 or 2,5)</label>
-        </div>  
+          <label
+            className={
+              !expresiones.rating.test(state.rating)
+                ? "label"
+                : "disabledCreate"
+            }
+          >
+            example (2 or 2,5)
+          </label>
+        </div>
 
         <div className="name">
           <label>Image:</label>
-          <input 
+          <input
             placeholder="Image"
             id="image"
-           value={state.image}
-           onChange={input}
+            value={state.image}
+            onChange={input}
           />
-          <label className={!expresiones.image.test(state.image)? "label": "disabledCreate"}>url (jpg o png)</label>
+          <label
+            className={
+              !expresiones.image.test(state.image) ? "label" : "disabledCreate"
+            }
+          >
+            url (jpg o png)
+          </label>
         </div>
 
         <div className="description">
           <label>Description: </label>
           <textarea
-          id="description"
-          value={state.description}
-          onChange={input}
+            id="description"
+            value={state.description}
+            onChange={input}
           />
-          <label className={!expresiones.description.test(state.description)? "label": "disabledCreate"}>10 to 25 characters</label>
+          <label
+            className={
+              !expresiones.description.test(state.description)
+                ? "label"
+                : "disabledCreate"
+            }
+          >
+            10 to 25 characters
+          </label>
         </div>
 
-        <button className={verificaion?"buttonCreate": "disabledButtonCreate"}>Create videogamer</button>
+        <button
+          className={verificaion ? "buttonCreate" : "disabledButtonCreate"}
+        >
+          Create videogamer
+        </button>
       </form>
     </div>
   );

@@ -17,7 +17,7 @@
     border-radius: 8px;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: 90px 90px 90px 140px 55px;
+    grid-template-rows: 90px 100px 90px 140px 55px;
     grid-gap: 10px;
     border: 3px solid black;
 }
@@ -107,4 +107,17 @@
     margin-left: 95%;
     height: 93%;
     opacity: 0;
+}
+.delete1 button{
+    margin-left: 3px;
+    padding: 2px;
+    border: 2px solid black;
+    border-radius: 8px;
+}
+
+.delete2 button{
+    margin-left: 3px;
+    padding: 2px;
+    border: 2px solid black;
+    border-radius: 8px;
 }

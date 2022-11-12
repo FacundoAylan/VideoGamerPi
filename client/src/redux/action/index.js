@@ -9,6 +9,7 @@ export const FILTER_RATING = "FILTER_RATING";
 export const GET_GENRES = "GET_GENRES";
 export const FILTER_GENRE = "FILTER_GENRE";
 export const CREATE_VIDEOGAME = "CREATE_VIDEOGAME";
+export const WARNINGS = "WARNINGS"; 
 
 export const getVideogames = () => {
   return async (dispatch) => {
@@ -120,9 +121,17 @@ export const videogamersALL = (payload) => {
 export const create = (payload) =>{
   return async (dispatch) => {
     try{
-      return await axios.post("http://localhost:3006/videogames", payload)
+      const json = await axios.post("http://localhost:3006/videogames/", payload);
     }catch(error){
       console.log(error);
     }
+  }
+};
+
+export const warnings1 = () => {
+  return async (dispatch) => {
+    dispatch({
+      type: WARNINGS
+    })
   }
 }

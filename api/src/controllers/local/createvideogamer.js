@@ -18,7 +18,7 @@ const createVideogameDB = async (req, res) => {
 
   let data = await DBvideogamers();
   let result = data.filter((value) => {
-    if (value.name === name) {
+    if (value.name == name) {
       return true;
     }
   });

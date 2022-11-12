@@ -4,9 +4,10 @@ import { Link } from "react-router-dom";
 import { getVideogames, filterCreate, filter_rating, getGenres, filterGenre, videogamersALL } from "../../../redux/action/index";
 import "./sort.css";
 
-export const Sort = () => {
+export const Sort = ({setPage}) => {
 
   const genres = useSelector((state) => state.genres);
+  
   const dispatch = useDispatch();
   useEffect(()=>{
     dispatch(getGenres())
@@ -14,16 +15,20 @@ export const Sort = () => {
 
   const create = (e) => {
     dispatch(filterCreate(e.target.value));
+    setPage(1);
   };
 
   const Rating = (e) =>{
     dispatch(filter_rating(e.target.value));
+    setPage(1);
   };
   const genre = (e) =>{
     dispatch(filterGenre(e.target.value));
+    setPage(1);
   }
   const filterALL = (e) => {
     dispatch(videogamersALL(e.target.value));
+    setPage(1);
   };
 
   return (
@@ -42,7 +47,7 @@ export const Sort = () => {
 
       <div className="activeSort">
         <select onChange={(e) => create(e)}>
-          <option value="Api">create</option>
+          <option value="Reset">create</option>
           <option value="Api">Api</option>
           <option value="BD">DB</option>
         </select>

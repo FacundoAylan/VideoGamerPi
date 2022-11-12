@@ -7,14 +7,16 @@ import {
   GET_GENRES,
   VIDEOGAMERS_ALL,
   FILTER_GENRE,
-  CREATE_VIDEOGAME
+  CREATE_VIDEOGAME,
+  WARNINGS
 } from "../action";
 
 const inicialState = {
   videogames: [],
   allVideogamers: [],
   detail: [],
-  genres: []
+  genres: [],
+  warnings: false
 };
 export const rootReducer = (state = inicialState, action) => {
   switch (action.type) {
@@ -41,20 +43,36 @@ export const rootReducer = (state = inicialState, action) => {
     }
     case FILTER_CREATE: {
       const allVideogamers = state.allVideogamers;
-      const filterVideogamers =
-        action.payload === "Api"
-          ? allVideogamers.filter((value) => {
+      const result = ()=>{
+        if(action.payload === "Api"){
+          return(allVideogamers.filter((value) => {
               const expresion = /^[0-9]+$/;
               return expresion.test(value.id);
-            })
-          : allVideogamers.filter((value) => {
-              const expresion = /^[0-9]+$/;
-              return !expresion.test(value.id);
-            });
-      return {
-        ...state,
-        videogames: filterVideogamers,
+            }))
+        }
+       else if( action.payload === "BD"){
+         return( allVideogamers.filter((value) => {
+             const expresion = /^[0-9]+$/;
+             return !expresion.test(value.id);
+           }));
+       }
+       else if (action.payload === "Reset"){
+         return(state.allVideogamers);
+       }
       };
+      const filterVideogamers = result();
+      
+      if(filterVideogamers.length === 0){
+        return {
+          ...state,
+          warnings: "not found videogames"
+        }
+      }else{
+        return {
+          ...state,
+          videogames: filterVideogamers,
+        };
+      }
     }
     case FILTER_RATING : {
       let orderRatingGenre = action.payload === "true"? 
@@ -94,6 +112,11 @@ export const rootReducer = (state = inicialState, action) => {
           ...state,
           videogames: filterGenre
         }
+      }else{
+        return {
+          ...state,
+          warnings: "not found genres"
+        }
       }
     }
     case VIDEOGAMERS_ALL: {
@@ -108,6 +131,12 @@ export const rootReducer = (state = inicialState, action) => {
         ...state,
         videogames: orderVideogamesByName,
       };
+    }
+    case WARNINGS:{
+      return {
+        ...state,
+        warnings:false
+      }
     }
     default:
       return state;
