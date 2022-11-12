@@ -1,24 +1,26 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { videogamesName } from '../../../redux/action/index';
-import './search.css'
+import {FcSearch } from "react-icons/fc";
+import './search.css';
+
 export const Search = () => {
 
   const [search, setSearch ] = useState('');
 
   const dispactch = useDispatch();
-  useEffect(() =>{
-    dispactch(videogamesName(search))
-  }, [search]);
 
   const onchangeInput = (e) => {
-    setSearch(e.target.value.toLowerCase());
+    setSearch(e.target.value);
   }
-  console.log(search)
+  const onchangeClick = () => {
+    dispactch(videogamesName(search))
+    setSearch('')
+  }
   return (
     <div className="conteinerSearch">
-      <input type="text" className="inputSearch" onChange={onchangeInput}/>
-      <label>Search by name</label>
+      <input type="text" className="inputSearch" onChange={onchangeInput} placeholder="Search by name" value={search}/>
+      <button onClick={onchangeClick}><FcSearch/></button>
     </div>
   );
 };

@@ -30,7 +30,9 @@ export const VideogamerID = () => {
       </Link>
       {detail !== undefined ? (
         <div className="conteinerVideogamerID">
-          <img src={detail.image} alt="" className="imageVideogamerID" />
+          <div className="divImage">
+            <img src={detail.image} alt="" className="imageVideogamerID" />
+          </div>
           <div className="detailVideogamerID">
             <h1>Name: {detail.name}</h1>
             <h2>ID: {detail.id}</h2>

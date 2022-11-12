@@ -9,6 +9,9 @@
 }
 
 .start h1 {
+    animation-name: anim;
+    animation-duration: 5s;
+    animation-iteration-count: infinite;
     min-height: 100%;
     margin: 0;
     padding: 0;

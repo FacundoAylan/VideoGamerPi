@@ -30,7 +30,9 @@ export const Sort = ({setPage}) => {
     dispatch(videogamersALL(e.target.value));
     setPage(1);
   };
-
+  const reset= () => {
+    dispatch(getVideogames())
+  }
   return (
     <div className="conteinerSort">
       <input
@@ -74,6 +76,7 @@ export const Sort = ({setPage}) => {
         </select>
 
         <div className="create">
+          <button onClick={reset} className="resetButton">Reset</button>
           <Link to="/create">
             <button className="createbutton">Create</button>
           </Link>

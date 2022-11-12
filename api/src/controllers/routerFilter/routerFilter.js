@@ -8,15 +8,43 @@ const getVideogames = async (req, res) => {
   const { name } = req.query;
   try {
     if (name) {
-      let data = await DBvideogamers();
-      data = data
-        .filter((value) => {
-          return value.name.includes(name);
+      let dataAPI = await axios(`https://api.rawg.io/api/games?search=${name}&key=${API_KEY}`);
+      let value = dataAPI.data.results
+      value= value.map((value) => {
+       return( {
+          id: value.id,
+          name: value.name,
+          image: value.background_image,
+          released: value.released,
+          rating: value.rating,
+          platforms: value.platforms.map((i) => {
+            return i.platform.name;
+          }),
+          genres: value.genres.map((i) => {
+            return i.name;
+          }),
         })
-        .slice(0, 15);
-
-      if (data) {
-        res.send(data);
+      }) 
+      // llamado a la base de datos
+      let data = await Videogame.findOne({
+        where: {
+            name: name
+        },
+        include: {
+            model: Genre,
+            attributes: ['name'],
+            through: {
+                attributes: [],
+            }
+        }
+      });
+      if(data){
+        data = JSON.parse(JSON.stringify(data));
+        data.genres = data.genres.map(g => g.name);
+        value = value.concat(data)
+      }
+      if (data || dataAPI) {
+        res.send(value);
       } else {
         res.send("game not found");
       }
@@ -57,7 +85,7 @@ const getVideogamesID = async (req, res) => {
       let value = dataId.data
       value= {
         id: value.id,
-        name: value.name.toLowerCase(),
+        name: value.name,
         description: value.description_raw,
         image: value.background_image,
         released: value.released,

@@ -26,7 +26,7 @@ export const HomePage = () => {
   const exit = () =>{
     dispatch(warnings1());
   }
-  console.log(warnings)
+
   return (
     <div>
       {videoGames?.length > 0 || warnings? (
@@ -34,6 +34,7 @@ export const HomePage = () => {
           <div className={warnings? "activewarning": "disabledwarning"}>
             <button onClick={exit}>X</button>
             <h1>{warnings}</h1>
+
             <img
                 src="https://media.tenor.com/e8aElio9JQAAAAAj/mario-walking.gif"
                 alt=""

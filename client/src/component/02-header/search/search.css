@@ -10,7 +10,20 @@
     width: 100%;
 
 }
+.conteinerSearch button {
+    position: absolute;
+    margin-left: 84%;
+    margin-top: 2px;
+    height: 30px;
+    width: 30px;
+    cursor: pointer;
+    padding: 1px;
+    background-position: center;
+    font-size: 33px;
+    background-color: transparent;
+    border: 0;
 
+}
 .inputSearch {
     position: absolute;
     border: 2px solid white;

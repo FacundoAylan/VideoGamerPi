@@ -1,3 +1,6 @@
+.conteinterCreate{
+    position: relative;
+}
 .conteinterCreate {
     height: 100vh;
     width: 100%;
@@ -120,4 +123,51 @@
     padding: 2px;
     border: 2px solid black;
     border-radius: 8px;
+}
+.warningactive{
+    position: absolute;
+    background-color: rgb(38, 38, 201);
+    height: 300px;
+    width: 600px;
+    z-index: 300;
+    margin-top: 13%;
+    left: 28%;
+    border-radius: 12px;
+}
+.warningactive button {
+    height: 40px;
+    width: 40px;
+    margin-left: 92%;
+    margin-top: 1%;
+    border-radius: 20px;
+    color: red;
+    font-size: 20px;
+    font-weight: 800;
+    background-color: white;
+    border: none;
+    cursor: pointer;
+}
+.warningactive h1 {
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+    padding-top: 6%;
+    color: white;
+}
+.activewarning img {
+    height: 100px;
+    width: 100px;
+}
+.warningdisabled{
+    position: absolute;
+    height: 300px;
+    width: 600px;
+    z-index: -1;
+    margin-top: 20%;
+    margin-left: 25%;
+    background-color: none;
+    opacity: 0;
+}
+.warningdisabled img {
+    opacity: 0;
 }

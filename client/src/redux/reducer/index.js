@@ -39,6 +39,11 @@ export const rootReducer = (state = inicialState, action) => {
           ...state,
           videogames: action.payload,
         };
+      }else{
+        return {
+          ...state,
+          warnings: "not found videogame"
+        }
       }
     }
     case FILTER_CREATE: {

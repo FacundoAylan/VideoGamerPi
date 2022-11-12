@@ -23,7 +23,7 @@ const { Genres } = require("./src/controllers/api/genresApi");
 
 // Syncing all the models at once.
 conn.sync({ force: true }).then(() => {
-  server.listen(3006, () => {
+  server.listen(3008, () => {
     Genres();
     console.log("%s listening at 3001"); // eslint-disable-line no-console
   });

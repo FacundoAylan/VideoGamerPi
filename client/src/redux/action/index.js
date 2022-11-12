@@ -14,7 +14,7 @@ export const WARNINGS = "WARNINGS";
 export const getVideogames = () => {
   return async (dispatch) => {
     try {
-      const json = await axios.get("http://localhost:3006/videogames");
+      const json = await axios.get("http://localhost:3008/videogames");
 
       dispatch({
         type: GET_VIDEOGAMES,
@@ -29,7 +29,7 @@ export const getVideogames = () => {
 export const detailVideogames = (id) => {
   return async (dispatch) => {
     try {
-      const json = await axios.get(`http://localhost:3006/videogames/${id}`);
+      const json = await axios.get(`http://localhost:3008/videogames/${id}`);
       dispatch({
         type: DETAIL_VIDEOGAMES,
         payload: json.data,
@@ -44,7 +44,7 @@ export const videogamesName = (name) => {
   return async (dispatch) => {
     try {
       const json = await axios.get(
-        `http://localhost:3006/videogames/?name=${name}`
+        `http://localhost:3008/videogames/?name=${name}`
       );
       dispatch({
         type: GET_VIDEOGAMES_NAME,
@@ -81,7 +81,7 @@ export const getGenres = () => {
   return async(dispatch) => {
     try {
       const json = await axios.get(
-        `http://localhost:3006/genres`
+        `http://localhost:3008/genres`
       );
       dispatch({
         type: GET_GENRES,
@@ -121,7 +121,7 @@ export const videogamersALL = (payload) => {
 export const create = (payload) =>{
   return async (dispatch) => {
     try{
-      const json = await axios.post("http://localhost:3006/videogames/", payload);
+      const json = await axios.post("http://localhost:3008/videogames/", payload);
     }catch(error){
       console.log(error);
     }

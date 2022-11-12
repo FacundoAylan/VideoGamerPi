@@ -26,11 +26,15 @@ export const Create = () => {
     image: /(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)/,
     description: /^[\s\S]{10,100}$/,
   };
-
+  const [warnings, setWarnings] = useState(false);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getGenres());
   }, []);
+
+  const controller = (value) =>{
+    document.getElementById(value).selectedIndex = 0;
+  };
 
   const input = (e) => {
     if (e.target.id === "rating") {
@@ -53,17 +57,19 @@ export const Create = () => {
         ...state,
         genres: state.genres.concat(e.target.value),
       });
+      controller("genres")
     } else {
       setState({
         ...state,
         platforms: state.platforms.concat(e.target.value),
       });
+      controller("platform")
     }
   };
 
   const onChangeDelete = (e) => {
     const filter =
-      e.id === "platforms"
+      e.target.id === "platforms"
         ? state.platforms.filter((value) => value !== e.target.value)
         : state.genres.filter((value) => value !== e.target.value);
     if (filter.length === 0) {
@@ -80,13 +86,37 @@ export const Create = () => {
   };
   const handlerOnSubmit = (event) => {
     event.preventDefault();
+    setWarnings(true);
     dispatch(create(state));
   };
-
+  const exit = () => {
+    setWarnings(false);
+    setState({
+      name: "",
+      description: "",
+      image: "",
+      released: "",
+      rating: "",
+      platforms: [],
+      genres: [],
+    })
+  }
+   
   let verificaion = Verificacion(state, expresiones);
-
+ 
   return (
     <div className="conteinterCreate">
+
+      <div className={warnings? "warningactive": "warningdisabled"}>
+        <button onClick={exit}>X</button>
+        <h1>videogame created</h1>
+        <img
+            src="https://media.tenor.com/e8aElio9JQAAAAAj/mario-walking.gif"
+            alt=""
+            className="headerImage"
+          />
+      </div>
+
       <Link to="/videogames" className="backCreate">
         <button>{"<="}</button>
       </Link>
@@ -145,17 +175,11 @@ export const Create = () => {
             })}
           </select>
           <div className="delete2">
-            {state.platforms.length > 0
-              ? state.platforms.map((value) => (
-                  <button
-                    value={value}
-                    id="platforms"
-                    onClick={onChangeDelete}
-                  >
-                    {value}
-                  </button>
-                ))
-              : ""}
+            {state.platforms.map((value) => (
+              <button value={value} id="platforms" onClick={onChangeDelete}>
+                {value}
+              </button>
+            ))}
           </div>
         </div>
 
@@ -209,7 +233,7 @@ export const Create = () => {
                 : "disabledCreate"
             }
           >
-            10 to 25 characters
+            10 to 50 characters
           </label>
         </div>
 
